@@ -1,0 +1,30 @@
+{
+  "name": "passnode",
+  "version": "0.1.0",
+  "description": "A console inquirer-based UI interface for pass (.password-store) 🤖 📟 🦖",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregolsky/passnode.git"
+  },
+  "keywords": [
+    "pass",
+    "password-store",
+    "ui",
+    "console",
+    "terminal"
+  ],
+  "author": "Grzegorz Lachowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gregolsky/passnode/issues"
+  },
+  "homepage": "https://github.com/gregolsky/passnode#readme",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "inquirer-autocomplete-prompt": "^1.0.2"
+  }
+}
