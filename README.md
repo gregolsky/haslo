@@ -22,6 +22,6 @@ $ passnode
 
 - uses `pass` under-the-hood
 
-# Security
+## Security
 
 It doesn't try to read your GPG-encrypted passwords, but leaves that job to `pass` instead. Uses glob to search through store's directories, with inquirer.js's powerful case-insensitive autocomplete. Calls `pass` binary afterwards with proper parameters.
