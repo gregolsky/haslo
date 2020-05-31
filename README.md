@@ -1,6 +1,6 @@
 # passnode 🤖 📟 🦖
 
-A console inquirer-based UI interface for pass (.password-store) with case-insensitive autocomplete for entries search.
+A console inquirer-based UI interface for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
 Wow!
 
 ```
