@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "A console inquirer-based UI interface for pass (.password-store) 🤖 📟 🦖",
   "main": "index.js",
+  "bin": {
+    "passnode": "bin/passnode"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -20,6 +20,7 @@ inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 function getPasswordStoreDir() {
     return path.join(process.env.HOME, ".password-store");
 }
+
 async function main() {
 
     const passStoreDir = getPasswordStoreDir();
@@ -64,7 +65,7 @@ async function main() {
             cmdAction = "show"
             break;
         default:
-            throw new Error(`Not support action ${answer.action}.`);
+            throw new Error(`Not supported action ${answer.action}.`);
     }
 
     
@@ -82,4 +83,4 @@ async function main() {
     // in case of copy we need to detach from terminal
 }
 
-main();
+module.exports = { main };
