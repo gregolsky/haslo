@@ -1,10 +1,13 @@
-# passnode 🤖 📟 🦖
+# haslo 🤖 📟 🦖
 
-A console inquirer-based UI interface for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
-Wow!
+Haslo means password in Polish.
+
+A console-native inquirer.js-based UI for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
+
+Whoa!
 
 ```
-$ passnode
+$ haslo
 ? Find:  socia
 ❯ social/Facebook/XXXXXXXXXXXXXXX
   social/Google/XXXXXXXXXXXXXXX
