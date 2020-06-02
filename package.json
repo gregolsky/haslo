@@ -1,33 +1,45 @@
 {
-  "name": "passnode",
+  "name": "haslo",
   "version": "0.1.0",
   "description": "A console inquirer-based UI interface for pass (.password-store) 🤖 📟 🦖",
   "main": "index.js",
   "bin": {
-    "passnode": "bin/passnode"
+    "passnode": "bin/haslo"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test-dbg": "mocha --inspect-brk"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregolsky/passnode.git"
+    "url": "git+https://github.com/gregolsky/haslo.git"
   },
   "keywords": [
     "pass",
     "password-store",
     "ui",
     "console",
-    "terminal"
+    "terminal",
+    "haslo",
+    "passwords",
+    "keepass",
+    "lastpass",
+    "dashlane"
   ],
   "author": "Grzegorz Lachowski",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gregolsky/passnode/issues"
+    "url": "https://github.com/gregolsky/haslo/issues"
   },
-  "homepage": "https://github.com/gregolsky/passnode#readme",
+  "homepage": "https://github.com/gregolsky/haslo#readme",
   "dependencies": {
+    "clipboardy": "^2.3.0",
     "glob": "^7.1.6",
     "inquirer-autocomplete-prompt": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^7.2.0",
+    "rewire": "^5.0.0",
+    "sinon": "^9.0.2"
   }
 }

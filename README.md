@@ -1,6 +1,6 @@
 # haslo 🤖 📟 🦖
 
-Haslo means password in Polish.
+> *haslo* means *password* in Polish.
 
 A console-native inquirer.js-based UI for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
 
@@ -15,6 +15,15 @@ $ haslo
 (Move up and down to reveal more choices)
 ```
 
+```
+? Action on social/Facebook/XXXXXXXXXXXXXXX (Use arrow keys)
+❯ Copy password 
+  Copy user 
+  Copy URL 
+  Show 
+  Go back 
+```
+
 ## Features
 
 - console-native
@@ -27,4 +36,4 @@ $ haslo
 
 ## Security
 
-It doesn't try to read your GPG-encrypted passwords, but leaves that job to `pass` instead. Uses glob to search through store's directories, with inquirer.js's powerful case-insensitive autocomplete. Calls `pass` binary afterwards with proper parameters.
+It doesn't try to read your GPG-encrypted passwords, but leaves that job to `pass` instead. Uses glob to search through store's directories, with inquirer.js's powerful case-insensitive autocomplete. Calls `pass` binary afterwards with proper parameters to act on the entry.
