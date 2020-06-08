@@ -1,6 +1,6 @@
 # haslo 🤖 📟 🦖
 
-> *haslo* means *password* in Polish.
+> *haslo* means *password* in Polish. 🇵🇱
 
 A console-native inquirer.js-based UI for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
 
