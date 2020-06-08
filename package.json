@@ -4,7 +4,7 @@
   "description": "A console inquirer-based UI interface for pass (.password-store) 🤖 📟 🦖",
   "main": "index.js",
   "bin": {
-    "passnode": "bin/haslo"
+    "haslo": "bin/haslo"
   },
   "scripts": {
     "test": "mocha",
