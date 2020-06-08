@@ -32,7 +32,7 @@ $ haslo
 
 - copy and show actions
 
-- uses `pass` under-the-hood
+- just uses `pass` under-the-hood
 
 ## Security 🛡️
 
