@@ -1,6 +1,6 @@
 {
   "name": "haslo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A console inquirer-based UI interface for pass (.password-store) 🤖 📟 🦖",
   "main": "index.js",
   "bin": {
@@ -35,6 +35,7 @@
   "dependencies": {
     "clipboardy": "^2.3.0",
     "glob": "^7.1.6",
+    "inquirer": "^7.1.0",
     "inquirer-autocomplete-prompt": "^1.0.2"
   },
   "devDependencies": {
