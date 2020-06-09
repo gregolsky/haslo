@@ -1,10 +1,20 @@
 # haslo 🤖 📟 🦖
 
+[![npm version](https://badge.fury.io/js/haslo.svg)](https://badge.fury.io/js/haslo)
+
 > *hasło* means *password* in Polish. 🇵🇱
 
 A console-native inquirer.js-based UI for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
 
 Whoa!
+
+## Install 🏭
+
+```
+npm install -g haslo
+```
+
+## Usage 🎸
 
 ```
 $ haslo
