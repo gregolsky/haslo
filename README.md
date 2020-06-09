@@ -6,6 +6,16 @@
 
 A console-native inquirer.js-based UI for [pass (.password-store)](https://www.passwordstore.org/) with case-insensitive autocomplete for entries search.
 
+## Features 🐙
+
+- console-native
+
+- case-insensitive autocomplete
+
+- copy and show actions
+
+- just uses `pass` under-the-hood
+
 Whoa!
 
 ## Install 🏭
@@ -33,16 +43,6 @@ $ haslo
   Show 
   Go back 
 ```
-
-## Features 🐙
-
-- console-native
-
-- case-insensitive autocomplete
-
-- copy and show actions
-
-- just uses `pass` under-the-hood
 
 ## Security 🛡️
 
