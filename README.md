@@ -10,7 +10,7 @@ A console-native inquirer.js-based UI for [pass (.password-store)](https://www.p
 
 - console-native
 
-- case-insensitive autocomplete
+- password entries search with case-insensitive autocomplete
 
 - copy and show actions
 
