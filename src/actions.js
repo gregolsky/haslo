@@ -7,8 +7,9 @@ const PASS_BIN = process.env.PASS_BIN || "/usr/bin/pass";
 
 class PassEntryActionBase {
 
-    constructor({ entry }) {
+    constructor({ entry, pipeOutput }) {
         this._entry = entry;
+        this._pipeOutput = pipeOutput || [ "stdout", "stderr" ];
     }
 
     renderCommand() {
@@ -19,11 +20,16 @@ class PassEntryActionBase {
         return {};
     }
 
-    run() {
+    _pipeProcessOutput(proc) {
+        for (const outStreamName of this._pipeOutput)
+            proc[outStreamName].pipe(process[outStreamName]);
+    }
+
+    runPass() {
         const param = this.renderCommand();
         const p = spawn(param[0], param.slice(1), this.getSpawnOpts());
-        p.stdout.pipe(process.stdout);
-        p.stderr.pipe(process.stderr);
+
+        this._pipeProcessOutput(p);
 
         return p;
     }
@@ -33,7 +39,9 @@ class PassEntryActionBase {
 class CopyPassword extends PassEntryActionBase {
 
     constructor(opts) {
-        super(opts)
+        super(Object.assign({ 
+            pipeOutput: [ "stdout", "stderr" ] 
+        }, opts));
     }
 
     renderCommand() {
@@ -47,12 +55,10 @@ class CopyPassword extends PassEntryActionBase {
     }
 
     run() {
-        const p = super.run();
+        const p = this.runPass();
+        p.unref();
         return new Promise((resolve, reject) => {
-            p.stdout.once('data', (data) => {
-                p.unref();
-                resolve();
-            });
+            p.once('exit', code => code === 0 ? resolve() : reject(code));
         });
     }
 }
@@ -68,7 +74,7 @@ class ShowEntry extends PassEntryActionBase {
     }
 
     async run() {
-        const p = super.run();
+        const p = this.runPass();
         return new Promise((resolve, reject) => {
             p.once('close', 
                 (code) => code === 0 
@@ -81,7 +87,7 @@ class ShowEntry extends PassEntryActionBase {
 class CopyField extends PassEntryActionBase {
 
     constructor(opts) {
-        super(opts);
+        super(Object.assign({ pipeOutput: [ "stderr" ] }, opts));
         this._field = opts.field;
     }
 
@@ -90,16 +96,24 @@ class CopyField extends PassEntryActionBase {
     }
 
     async run() {
-        const param = this.renderCommand();
-        const p = spawn(param[0], param.slice(1), this.getSpawnOpts());
-        p.stderr.pipe(process.stderr);
-
+        const p = this.runPass();
         const output = await gatherOutput(p.stdout);
-        const line = output.split(os.EOL)
-            .filter(x => x.includes(":") && x.toLowerCase().startsWith(this._field))[0];
+        const line = this._findLine(output);
+        const value = this._extractValue(line);
+        clipboardy.writeSync(value);
+        return value;
+    }
+
+    _findLine(output) {
+        return output.split(os.EOL)
+            .filter(x => 
+                x.includes(":") 
+                && x.toLowerCase().startsWith(this._field))[0];
+    }
+
+    _extractValue(line) {
         const fieldPrefix = new RegExp(`^${this._field}:`, "i");
         const value = line.replace(fieldPrefix, "").trim();
-        clipboardy.writeSync(value);
         return value;
     }
 }
@@ -120,6 +134,10 @@ async function gatherOutput(stream) {
     });
 }
 
+function getCopyField(opts, field) {
+    return new CopyField(Object.assign({ field }, opts));
+}
+
 function createAction(opts) {
     if (!opts.action) {
         throw new Error("'action' is required.");
@@ -129,17 +147,13 @@ function createAction(opts) {
         throw new Error("'entry' is required");
     }
 
-    function getCopyField(field) {
-        return new CopyField(Object.assign({ field }, opts));
-    }
-
     switch (opts.action) {
         case "copy_password":
             return new CopyPassword(opts);
         case "copy_user":
-            return getCopyField("user");
+            return getCopyField(opts, "user");
         case "copy_url":
-            return getCopyField("url");
+            return getCopyField(opts, "url");
         case "show":
             return new ShowEntry(opts);
         default:
